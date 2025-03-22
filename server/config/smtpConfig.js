@@ -1,8 +1,14 @@
-// import dotenv from 'dotenv';
+import dotenv from "dotenv";
 
-// dotenv.config();
-//     export const CLIENT_SECRET = process.env.CLIENT_SECRET
-//     export const CLIENT_ID = process.env.CLIENT_ID
-//     export const REFRESH_TOKEN = process.env.REFRESH_TOKEN
-//     export const ACCESS_TOKEN = process.env.ACCESS_TOKEN
-//     export const USER_EMAIL = process.env.USER_EMAIL
+dotenv.config();
+
+const envVariables = {
+  PORT: process.env.PORT,
+  CLIENT_SECRET: process.env.CLIENT_SECRET,
+  CLIENT_ID: process.env.CLIENT_ID,
+  REFRESH_TOKEN: process.env.REFRESH_TOKEN,
+  ACCESS_TOKEN: process.env.ACCESS_TOKEN,
+  USER_EMAIL: process.env.USER_EMAIL,
+};
+
+export default envVariables;

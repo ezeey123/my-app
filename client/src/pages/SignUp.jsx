@@ -1,127 +1,135 @@
-import { Link } from "react-router";
+import { useState } from "react";
+import { FaGoogle, FaApple } from "react-icons/fa";
+import { FiUser, FiMail, FiLock } from "react-icons/fi";
 
-const SignUp = () => {
+export default function SignUp() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [agreeTerms, setAgreeTerms] = useState(false);
+
   return (
-    <div>
-      <h3 className="">Sign up here</h3>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="absolute top-5 left-5 flex items-center space-x-2">
+        <div className="w-6 h-6 bg-blue-500 rounded-full animate-bounce"></div>
+        <h1 className="text-lg font-semibold">Meetmax</h1>
+      </div>
 
-      <form className="max-w-sm mx-auto" onSubmit={submitHandler}>
-        {/* {formError && <ErrorOutput errorMessage={formError} />}
-        {isError && (
-          <ErrorOutput
-            errorMessage={
-              error?.error || error?.data?.error || "something went wrong"
-            }
-          />
-        )} */}
-        <div className="mb-1">
-          <label
-            htmlFor="firstName"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            Firstname
-          </label>
+      {/* Language Selector */}
+      <div className="absolute top-5 right-5">
+        <select className="border rounded-md px-3 py-1 text-sm focus:outline-none">
+          <option>English (UK)</option>
+          <option>English (US)</option>
+          <option>French</option>
+        </select>
+      </div>
+
+      {/* Sign-Up Card */}
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md text-center">
+        <h2 className="text-2xl font-bold">Sign Up</h2>
+        <p className="text-gray-500">Join us today, it's free!</p>
+
+        {/* Social Sign-Up Buttons */}
+        <div className="flex space-x-4 my-4">
+          <button className="flex items-center justify-center space-x-2 px-4 py-2 border rounded-lg w-full text-gray-700 hover:bg-gray-100">
+            <FaGoogle />
+            <span>Sign up with Google</span>
+          </button>
+        </div>
+
+        {/* Divider */}
+        <div className="flex items-center my-4">
+          <hr className="flex-1 border-gray-300" />
+          <span className="px-2 text-gray-500 text-sm">OR</span>
+          <hr className="flex-1 border-gray-300" />
+        </div>
+
+        {/* Username Input */}
+        <div className="relative mb-4">
+          <FiUser className="absolute left-3 top-3 text-gray-500" />
           <input
             type="text"
-            id="firstName"
-            className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"
-            placeholder="Firstname"
-            onChange={(event) => setFirstName(event.target.value)}
+            placeholder="Enter your username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="w-full pl-10 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
-        <div className="mb-1">
-          <label
-            htmlFor="LastName"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            Lastname
-          </label>
-          <input
-            type="text"
-            id="lastName"
-            className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"
-            placeholder="Lastname"
-            onChange={(event) => setLastName(event.target.value)}
-          />
-        </div>
-
-        <div className="mb-1">
-          <label
-            htmlFor="email"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            Your email
-          </label>
+        {/* Email Input */}
+        <div className="relative mb-4">
+          <FiMail className="absolute left-3 top-3 text-gray-500" />
           <input
             type="email"
-            id="email"
-            className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"
-            placeholder="Enter Email Address"
-            onChange={(event) => setEmail(event.target.value)}
-          />
-        </div>
-        <div className="mb-1">
-          <label
-            htmlFor="password"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            Your password
-          </label>
-          <input
-            type="password"
-            id="password"
-            className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"
-            placeholder="Enter Password"
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </div>
-        <div className="mb-5">
-          <label
-            htmlFor="repeat-password"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            Repeat password
-          </label>
-          <input
-            type="password"
-            id="repeat-password"
-            className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"
-            placeholder="Confirm Password"
-            onChange={(event) => setConfirmPassword(event.target.value)}
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full pl-10 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
-        <div className="flex items-start mb-5">
-          <div className="flex items-center h-5">
-            <input
-              id="terms"
-              type="checkbox"
-              value=""
-              className="w-4 h-4 border border-gray-300 rounded-sm bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-            />
-          </div>
-          <label
-            htmlFor="terms"
-            className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            I agree with the{" "}
-            <a
-              href="#"
-              className="text-blue-600 hover:underline dark:text-blue-500"
-            >
-              terms and conditions
-            </a>
-          </label>
+        {/* Password Input */}
+        <div className="relative mb-4">
+          <FiLock className="absolute left-3 top-3 text-gray-500" />
+          <input
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full pl-10 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
         </div>
+
+        {/* Confirm Password Input */}
+        <div className="relative mb-4">
+          <FiLock className="absolute left-3 top-3 text-gray-500" />
+          <input
+            type="password"
+            placeholder="Confirm your password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            className="w-full pl-10 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        {/* Terms & Conditions */}
+        <div className="flex items-center justify-start text-sm mb-4">
+          <input
+            type="checkbox"
+            className="w-4 h-4 mr-2"
+            checked={agreeTerms}
+            onChange={(e) => setAgreeTerms(e.target.checked)}
+          />
+          <span className="text-gray-600">
+            I agree to the{" "}
+            <a href="#" className="text-blue-500 hover:underline">
+              Terms & Conditions
+            </a>
+          </span>
+        </div>
+
+        {/* Sign-Up Button (Animated) */}
         <button
-          type="submit"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className={`w-full py-2 rounded-md text-lg font-medium transition-transform duration-200 ${
+            agreeTerms
+              ? "bg-blue-600 text-white hover:scale-105 active:scale-95"
+              : "bg-gray-300 text-gray-500 cursor-not-allowed"
+          }`}
+          disabled={!agreeTerms}
         >
-          {isLoading ? "Please wait..." : "Sign up"}
+          Sign Up
         </button>
-      </form>
+
+        {/* Sign-In Link */}
+        <p className="mt-4 text-gray-600">
+          Already have an account?{" "}
+          <a href="#" className="text-blue-500 hover:underline">
+            Sign In
+          </a>
+        </p>
+      </div>
     </div>
   );
-};
-export default SignUp;
+}
